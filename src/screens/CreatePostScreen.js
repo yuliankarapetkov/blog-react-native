@@ -1,39 +1,21 @@
-import React, { useContext, useState } from 'react';
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet} from 'react-native';
 
 import { Context } from '../context/BlogContext';
+import PostForm from '../components/PostForm';
 
 const CreatePostScreen = ({ navigation }) => {
     const { addPost } = useContext(Context);
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
 
-    const savePost = () => {
-        addPost({ title, content });
+    const savePost = post => {
+        addPost(post);
         navigation.navigate('Index');
     };
 
     return (
-        <View>
-            <Text style={styles.label}>Title:</Text>
-            <TextInput 
-                style={styles.input} 
-                value={title} 
-                onChangeText={value => setTitle(value)} 
-            />
-
-            <Text style={styles.label}>Content:</Text>
-            <TextInput 
-                style={styles.input} 
-                value={content} 
-                onChangeText={value => setContent(value)} 
-            />
-
-            <Button
-                title="Save"
-                onPress={savePost}
-            />
-        </View>
+        <PostForm
+            onSubmit={post => savePost(post)}
+        />
     )
 };
 
