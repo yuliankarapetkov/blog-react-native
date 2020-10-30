@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 
-const PostForm = ({ post, onSubmit }) => {
+const PostForm = ({ post = {}, onSubmit }) => {
     const [title, setTitle] = useState(post.title);
     const [content, setContent] = useState(post.content);
 
@@ -28,13 +28,6 @@ const PostForm = ({ post, onSubmit }) => {
         </View>
     )
 };
-
-PostForm.defaultProps = {
-    post: {
-        title: '',
-        content: ''
-    },
-}
 
 const styles = StyleSheet.create({
     label: {

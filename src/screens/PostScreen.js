@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { EvilIcons } from '@expo/vector-icons';
 
 import { Context } from '../context/BlogContext';
 
@@ -12,10 +13,23 @@ const PostScreen = ({ navigation }) => {
     return (
         <View>
             <Text>{post.title}</Text>
+            <Text>{post.content}</Text>
         </View>
     )
 };
 
 const styles = StyleSheet.create({});
+
+PostScreen.navigationOptions = ({ navigation }) => {
+    const id = navigation.getParam('id');
+
+    return {
+        headerRight: () => (
+            <TouchableOpacity onPress={() => navigation.navigate('EditPost', { id })}>
+                <EvilIcons name="pencil" size={30} />
+            </TouchableOpacity>
+        ),
+    };
+}
 
 export default PostScreen;

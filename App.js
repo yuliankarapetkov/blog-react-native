@@ -5,12 +5,14 @@ import { createStackNavigator } from 'react-navigation-stack';
 import IndexScreen from './src/screens/IndexScreen';
 import PostScreen from './src/screens/PostScreen';
 import CreatePostScreen from './src/screens/CreatePostScreen';
+import EditPostScreen from './src/screens/EditPostScreen';
 import { Provider } from './src/context/BlogContext';
 
 const navigator = createStackNavigator({
   Index: IndexScreen,
   Post: PostScreen,
   CreatePost: CreatePostScreen,
+  EditPost: EditPostScreen,
 }, {
   initialRouteName: 'Index',
   defaultNavigationOptions: {

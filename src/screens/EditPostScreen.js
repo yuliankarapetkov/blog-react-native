@@ -4,16 +4,20 @@ import { StyleSheet} from 'react-native';
 import { Context } from '../context/BlogContext';
 import PostForm from '../components/PostForm';
 
-const CreatePostScreen = ({ navigation }) => {
-    const { addPost } = useContext(Context);
+const EditPostScreen = ({ navigation }) => {
+    const id = navigation.getParam('id');
+    const { state, updatePost } = useContext(Context);
+
+    const post = state.find(p => p.id === id);
 
     const savePost = post => {
-        addPost(post);
-        navigation.navigate('Index');
+        updatePost(id, post);
+        navigation.pop();
     };
 
     return (
         <PostForm
+            post={post}
             onSubmit={post => savePost(post)}
         />
     )
@@ -21,4 +25,4 @@ const CreatePostScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({});
 
-export default CreatePostScreen;
+export default EditPostScreen;
