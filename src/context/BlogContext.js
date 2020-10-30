@@ -5,7 +5,7 @@ const initialState = [];
 const reducer = (state, { type, payload }) => {
     switch (type) {
         case 'ADD_POST':
-            return [...state, { id: Date.now(), title: `Post #${state.length + 1}` }];
+            return [...state, { ...payload, id: Date.now() }];
         case 'DELETE_POST':
             return state.filter(p => p.id !== payload)
         default:
@@ -14,7 +14,7 @@ const reducer = (state, { type, payload }) => {
 };
 
 const addPost = dispatch => {
-    return () => dispatch({ type: 'ADD_POST' });
+    return post => dispatch({ type: 'ADD_POST', payload: post });
 };
 
 const deletePost = dispatch => {

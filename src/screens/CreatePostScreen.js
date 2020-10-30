@@ -4,9 +4,14 @@ import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import { Context } from '../context/BlogContext';
 
 const CreatePostScreen = ({ navigation }) => {
-    const { state } = useContext(Context);
+    const { addPost } = useContext(Context);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+
+    const savePost = () => {
+        addPost({ title, content });
+        navigation.navigate('Index');
+    };
 
     return (
         <View>
@@ -26,6 +31,7 @@ const CreatePostScreen = ({ navigation }) => {
 
             <Button
                 title="Save"
+                onPress={savePost}
             />
         </View>
     )
